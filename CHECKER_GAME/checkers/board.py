@@ -30,7 +30,7 @@ class Board:
                     self.PIECECOLOR1_kings += 1
                 else:
                     self.PIECECOLOR2_kings += 1
-
+                    
     def get_all_pieces(self, color):
         pieces = []
         for row in self.board:
@@ -43,6 +43,15 @@ class Board:
     def get_piece(self, row, col):
         return self.board[row][col]
 
+    def who_won(self, color):
+        if self.PIECECOLOR1_left <= 0:
+            return "PIECECOLOR2"
+        elif self.PIECECOLOR2_left <= 0:
+            return "PIECECOLOR1"
+        elif AI_AGENT == COMPUTER and self.get_valid_moves(color) == {}:
+            return "no winner"
+
+        return None
 
     # creat the board
     def draw_board(self):
