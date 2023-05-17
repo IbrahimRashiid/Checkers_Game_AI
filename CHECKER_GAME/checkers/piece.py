@@ -20,9 +20,18 @@ class Piece:
         self.y = 0
         self.calculate_position()
 
+    def get_column(self):
+        return self.col
+
+    def get_row(self):
+        return self.row
+
     def calculate_position(self):
         self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2
         self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2
+
+    def make_king(self):
+        self.isKing = True
 
     def move(self, row, col):
         self.row = row
@@ -36,3 +45,9 @@ class Piece:
         pygame.draw.circle(win, self.color, (self.x, self.y), radius)
         if self.isKing:
             win.blit(CROWN, (self.x - CROWN.get_width() / 2, self.y - CROWN.get_height() / 2))
+
+    def repair(self):
+        return str(self.color)
+
+    def is_king(self):
+        return self.isKing
