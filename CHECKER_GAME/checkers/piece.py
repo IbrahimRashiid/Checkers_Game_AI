@@ -15,15 +15,10 @@ class Piece:
             self.direction = 1
         else:
             self.direction = -1
+
         self.x = 0
         self.y = 0
         self.calculate_position()
-
-    def get_column(self):
-        return self.col
-
-    def get_row(self):
-        return self.row
 
     def calculate_position(self):
         self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2
@@ -39,3 +34,5 @@ class Piece:
         radius = SQUARE_SIZE // 2 - self.PADDING
         pygame.draw.circle(win, OUTLINECOLOR, (self.x, self.y), radius + self.OUTLINE)
         pygame.draw.circle(win, self.color, (self.x, self.y), radius)
+        if self.isKing:
+            win.blit(CROWN, (self.x - CROWN.get_width() / 2, self.y - CROWN.get_height() / 2))

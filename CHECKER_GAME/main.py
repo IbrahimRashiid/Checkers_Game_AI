@@ -10,14 +10,16 @@ def main():
     pygame.font.init()
     running = True
     clock = pygame.time.Clock()
-    board = Board()
+    checkers_board = Board()
+    checkers_board.move(checkers_board.get_piece(1,2),4,4)
     while running:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        board.pieces_shape(WIN) 
+        checkers_board.pieces_shape(WIN) 
         pygame.display.update()
     pygame.quit()
 
 main()
+

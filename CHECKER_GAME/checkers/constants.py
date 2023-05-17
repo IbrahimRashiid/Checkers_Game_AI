@@ -13,3 +13,4 @@ OUTLINECOLOR = (128, 128, 128)
 AI_AGENT = (26, 22, 7)  # aka white
 COMPUTER = (238, 220, 148)  # aka black
 GREEN = (0, 255, 0)
+CROWN = pygame.transform.scale(pygame.image.load('assets/king.png'), (54, 35))
