@@ -30,7 +30,15 @@ class Board:
                     self.PIECECOLOR1_kings += 1
                 else:
                     self.PIECECOLOR2_kings += 1
-                    
+
+    def evaluation(self, turn):
+        if turn == COMPUTER:
+            return (self.PIECECOLOR2_left - self.PIECECOLOR1_left) + 2 * (
+                    self.PIECECOLOR2_kings - self.PIECECOLOR1_kings)
+        else:
+            return (self.PIECECOLOR1_left - self.PIECECOLOR2_left) + 2 * (
+                    self.PIECECOLOR1_kings - self.PIECECOLOR2_kings)
+
     def get_all_pieces(self, color):
         pieces = []
         for row in self.board:

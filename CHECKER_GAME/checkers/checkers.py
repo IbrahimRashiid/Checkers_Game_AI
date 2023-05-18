@@ -1,8 +1,10 @@
 import pygame
 from checkers.board import Board
-from checkers.constants import GREEN,AI_AGENT, COMPUTER, SQUARE_SIZE
-class Game:
-    def __init__(self, win,board):
+from checkers.constants import GREEN, AI_AGENT, COMPUTER, SQUARE_SIZE
+
+
+class Checkers:
+    def __init__(self, win, board):
         self.win = win
         self.board = board  # Create a new instance of the Board object
         self.selected = None
@@ -11,7 +13,7 @@ class Game:
 
     def update(self):
         if self.board is not None:
-            self.board.draw(self.win)
+            self.board.pieces_shape(self.win)
             self.draw_valid_moves(self.valid_moves)
             pygame.display.update()
 
@@ -21,9 +23,9 @@ class Game:
         self.turn = COMPUTER
         self.valid_moves = {}
 
-    def winner(self, color):
+    def who_won(self, color):
         if self.board is not None:
-            return self.board.is_winner(color)
+            return self.board.who_won(color)
         else:
             if self.turn == AI_AGENT:
                 return "PIECECOLOR2"
@@ -33,7 +35,7 @@ class Game:
     def reset(self):
         self._initialize()
 
-    def select(self, row, col):
+    def selectPiece(self, row, col):
         if self.selected:
             result = self._move(row, col)
             if not result:
@@ -53,7 +55,7 @@ class Game:
             self.board.move(self.selected, row, col)
             skipped = self.valid_moves[(row, col)]
             if skipped:
-                self.board.remove(skipped)
+                self.board.piece_eat(skipped)
             self.switch_turns()
             return True
         return False
@@ -78,7 +80,7 @@ class Game:
     def get_board(self):
         return self.board
 
-    def ai_move(self, board):
+    def ai_turn(self, board):
         self.board = board
         self.switch_turns()
 
