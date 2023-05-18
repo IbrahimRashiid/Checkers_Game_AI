@@ -97,13 +97,16 @@ def main():
         if game.who_won(AI_AGENT) == "PIECECOLOR1":
             message = "Black won"
             get_winner(message)
+            running = False
 
         elif game.who_won(COMPUTER) == "PIECECOLOR2":
             message = "White won"
             get_winner(message)
+            running = False
         elif game.who_won(COMPUTER) == "no winner" or game.who_won(AI_AGENT) == "no winner":
             message = "no winner"
             get_winner(message)
+            running = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
